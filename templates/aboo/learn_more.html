@@ -1,0 +1,50 @@
+{% extends "aboo/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="learn-more-section">
+<div class="container text-light">
+    <h2>{{ service.title }}</h2>
+
+    <!--main image-->
+    {% if service.image1 %}
+    <img src="{{ service.image1.url }}" alt="solution" class="img-fluid mb-4">
+    {% endif %}
+
+    <h3>Overview</h3>
+    <p>{{ service.overview }}</p>
+
+    <!-- challenges -->
+     {% if service.challenges %}
+     <h3>Challenges</h3>
+
+     <ul>
+        {% for challenges in sevice.challenges.splitlines %}
+         <li>{{ item }}</li>
+        {% endfor %}
+     </ul>
+     {% endif %}
+
+     <!-- solution -->
+     <h3>Solution</h3> 
+        <p>{{ service.solutions }}</p>
+        {% if service.image2 %}     
+        <img src="{{ service.image2.url }}" alt="solution" class="img-fluid mb-4">
+        {% endif %}
+
+    <!-- technologies used -->
+     {% if service.technologies.all %}
+     <h3>Technologies used</h3>
+     <ul>
+        {% for tech in service.technologies.all %}
+            <li>{{ tech.name }}</li>
+        {% endfor %}
+     </ul>
+     {% endif %}
+
+    <!-- conclusion -->
+     <h3>Conclusion</h3>
+     <p>{{ service.conclusion }}</p>
+</div>
+</section>
+{% endblock %}

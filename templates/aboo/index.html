@@ -1,0 +1,195 @@
+{% extends 'aboo/base.html' %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1>Hi, I'm <span>Josh</span></h1>
+                        <p>Data Scientist & Developer with expertise in machine learning, data analytics, and web application development. I transform complex data into actionable insights and build intelligent solutions that drive business success.</p>
+                        
+                        
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Kampala, Uganda</li>
+                            <li><i class="fas fa-check-circle"></i> Available for Work</li>
+                            <li><i class="fas fa-check-circle not-available"></i> Open to Relocation</li>
+                        </ul>
+                        
+                        <a href="#contact" class="btn btn-dark me-3">Hire Me</a>
+                        <a href="{% url 'projects' %}" class="btn btn-outline-dark">View Projects</a>
+
+                        <object data="staticfiles\img\data.svg" type="image/svg+xml" class="floating-data"></object>
+                        <object data="staticfiles\img\machine.svg" type="image/svg+xml" class="floating-machine"></object>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="staticfiles\img\josh.png" class="profile-img" alt="Josh - Data Scientist">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title text-center">Curious About Me</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>I am a passionate Data Scientist with over 5 years of experience in transforming raw data into meaningful insights. My expertise lies in machine learning, statistical analysis, and developing data-driven solutions that solve real-world problems.</p>
+                    <p>I hold a Master's degree in Data Science from Makerere University and have worked with various organizations to implement data strategies that improve decision-making and operational efficiency.</p>
+                </div>
+                <div class="col-lg-6">
+                    <p>My approach combines technical expertise with business acumen, ensuring that the solutions I develop are not only technically sound but also aligned with organizational goals. I'm proficient in Python, R, SQL, and various data visualization tools.</p>
+                    <p>When I'm not crunching numbers or building models, I enjoy contributing to open-source projects, mentoring aspiring data scientists, and exploring new technologies in the AI space.</p>
+                </div>
+            </div>
+    </section>
+  
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2 class="section-title text-center">Skills & Technologies</h2>
+
+            <ul class="tech-list">
+                <li class="tech-item">
+                    <img src="staticfiles\img\python.png" alt="python">
+                    <span>Python</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\r-project.png" alt="r project">
+                    <span>R programming</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\ms-excel.png" alt="sql">
+                    <span>Ms Excel</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\power_bi.png" alt="power bi">
+                    <span>Power Bi</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\sql.png" alt="sql">
+                    <span>SQL</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\pandas.png" alt="pandas">
+                    <span>Pandas</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\tableau.png" alt="Tableau">
+                    <span>Tableau</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\ms365.png" alt="ms365">
+                    <span>365</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\streamlit.png" alt="Streamlit">
+                    <span>Streamlit</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\jupyter_notebook.png" alt="jupyter">
+                    <span>Jupyter</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\django.png" alt="django">
+                    <span>Django</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\html5.png" alt="html5">
+                    <span>HTML5</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\bootstrap.png" alt="bootstrap">
+                    <span>Bootstrap</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\figma.png" alt="Figma">
+                    <span>Figma</span>
+                </li>
+                <li class="tech-item">
+                    <img src="staticfiles\img\illustrator.png" alt="Illustrator">
+                    <span>Illustrator</span>
+                </li>
+            </ul>
+            <div class="row">
+                {% for skill in skills %}
+                <div class="col-md-4 mb-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>{{ skill.name }}</h3>
+                        <p>Expert in analyzing complex datasets, creating visualizations, and deriving actionable insights using tools like Python, R, Tableau, and Power BI.</p>
+                        <!-- <div class="progress mb-3">
+                            will use the progress bar later
+                          <div class="progress-bar" role="progressbar" style="width: {{ skill.proficiency }}%" aria-valuenow="{{ skill.proficiency }}" aria-valuemin="0" aria-valuemax="100">{{ skill.proficiency }}%</div>
+                        </div>  -->
+                        <div>
+                            {% for tech in skill.technology.all %}
+                            <span class="badge badge-primary">{{ tech.name }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title text-center">Featured Projects</h2>
+            {% include 'aboo/_project_cards.html' with projects=featured_projects %}
+            <div class="text-center mt-4">
+                <a href="{% url 'projects' %}" class="btn btn-primary">View All Projects</a>
+            </div>
+        </div>
+    </section>
+    
+    
+
+
+    <!-- Hire Section Preview -->
+    <section class="hire-section">
+        <div class="container">
+            <h2 class="section-title text-center">Hire Me</h2>
+            <p class="text-center mb-5">I'm available for freelance projects, contract work, and full-time positions. Here's how I can help you:</p>
+
+            {% include 'aboo/_hire_card.html' with services=services %}
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title text-center">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form">
+                        <form method="POST" action="{% url 'contact' %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="subject" placeholder="Subject">
+                            <textarea class="form-control" rows="5" name="message" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn btn-dark w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

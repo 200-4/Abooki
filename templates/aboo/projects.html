@@ -1,0 +1,12 @@
+{% extends 'aboo/base.html' %}
+
+{% block content %}
+<!-- Projects Section -->
+<section class="projects-section">
+        <div class="container">
+            <h2 class="section-title text-center">All Projects</h2>
+            {% include 'aboo/_project_cards.html' with projects=project %}
+        </div>
+    </section>
+    
+{% endblock %}

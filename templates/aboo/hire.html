@@ -1,0 +1,12 @@
+{% extends 'aboo/base.html' %}
+
+{% block content %}
+<!-- Hire Section -->
+<section class="hire-section">
+    <div class="container">
+        <h2 class="section-title text-center">Hire Me</h2>
+        <p class="freelance text-center mb-5">I'm available for freelance projects, contract work, and full-time positions. Here's how I can help you:</p>
+        {% include 'aboo/_hire_card.html' with services=services %}
+    </div>
+</section>
+{% endblock %}

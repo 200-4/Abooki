@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Josh - Data Scientist Portfolio{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Josh IT/Data</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#about">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'projects' %}">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'hire_me' %}">Hire Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-outline-light ms-3">Download CV</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Josh Data Scientist/IT</h3>
+                    <p>Transforming data into insights and ideas into reality.</p>
+                    <div class="services">
+                        <ul class="services_list">
+                            <li class="service-item">
+                                <a href="" class="service-link">Wed Development</a>
+                            </li>
+                            <li class="service-item">
+                                <a href="" class="service-link">Data Analysis and Visualization</a>
+                            </li>
+                            <li class="service-item">
+                                <a href="" class="service-link">Machine Learning Model Development</a>
+                            </li>
+                            <li class="service-item">
+                                <a href="" class="service-link">Custom Dashboard Creation</a>
+                            </li>
+                            <li class="service-item">
+                                <a href="" class="service-link">AI/ML Consulting</a>
+                            </li>
+                            <li class="service-item">
+                                <a href="" class="service-link">Microsoft Excel Tasks</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/kunihira-joshua"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/200-4"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/joshAbooki"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:kunihirajoshua270@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4" style="background-color: rgba(255,255,255,0.1);">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>© 2023 Josh. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Kampala, Uganda</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="staticfiles\js\script.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

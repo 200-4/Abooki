@@ -1,0 +1,18 @@
+<div class="row">
+    {% for service in services %}
+    <div class="col-md-4 mb-4">
+        <div class="hire-option">
+            <div class="hire-icon">
+                <i class="{{ service.icon_class }}"></i>
+            </div>
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+            <div class="price">{{ service.price }}</div>
+            <a href="{% url 'home' %}#contact" class="btn btn-outline-primary">Request Quote</a>
+            <div class="mb-3 learn-more">
+                <a href="{% url 'learn_more' service.id %}" class="link-light link-offset-2 link-underline-opacity-100-hover">Learn More</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
