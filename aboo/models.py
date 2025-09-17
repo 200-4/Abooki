@@ -15,13 +15,13 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 class Technology(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
-    
+
 
 class Skill(models.Model):
     CATEGORY_CHOICES = [
@@ -33,14 +33,14 @@ class Skill(models.Model):
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     # proficiency = models.IntegerField(default=80)
     technology = models.ManyToManyField(Technology, related_name='skills', blank=True)
-    
+
     show_on_website = models.BooleanField(default=True)
 
 
 
     def __str__(self):
         return self.name
-    
+
 class Service(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -55,7 +55,7 @@ class Service(models.Model):
     image1 = models.ImageField(upload_to='services/', blank=True, null=True)
     image2 = models.ImageField(upload_to='services/', blank=True, null=True)
 
-    
+
 
 
     def save(self, *args, **kwargs):
@@ -65,7 +65,7 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)
@@ -77,6 +77,6 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.subject}"
-    
+
 
 
