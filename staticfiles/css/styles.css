@@ -469,8 +469,9 @@ footer {
     padding: 60px 0 30px;
 }
 
-.social-links {
+.social-links {     
     margin-bottom: 30px;
+    margin-top: 15px;
 }
 
 .social-links a {
@@ -487,7 +488,7 @@ footer {
 }
 
 .social-links a:hover {
-    background: var(--success-color);
+    background: var(--secondary-color);
     transform: translateY(-3px);
 }
 
