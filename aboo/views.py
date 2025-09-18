@@ -36,7 +36,7 @@ def contact(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         subject = request.POST.get('subject')
-        messages = request.POST.get('message')
+        message = request.POST.get('message')
 
         #save to database
 
@@ -45,7 +45,7 @@ def contact(request):
             name = name,
             email=email,
             subject=subject,
-            messages=messages
+            message=message
         )
 
         #Send email notification
