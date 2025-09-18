@@ -20,7 +20,7 @@
 
      <ul>
         {% for challenges in service.challenges.splitlines %}
-         <li>{{ item }}</li>
+         <li>{{ challenges|safe }}</li>
         {% endfor %}
      </ul>
      {% endif %}
