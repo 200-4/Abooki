@@ -13,7 +13,12 @@ body {
     font-family: 'Poppins', sans-serif;
     color: #333;
     scroll-behavior: smooth;
-    overflow-x: visible !important;
+}
+
+[data-aos]{
+        transform: translateZ(0);
+        backface-visibility:hidden;
+        perspective: 1000px;
 }
 
 .navbar {
