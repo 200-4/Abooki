@@ -18,8 +18,8 @@ body {
 
 
 .navbar {
-    background-color: var(--light-color);
-    box-shadow: 0 2px 10px rgba(247, 247, 247, 0.2);
+    background-color: var(--dark-color) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     padding: 15px 0;
 }
 
@@ -80,9 +80,10 @@ body {
 
 .hero-section {
     overflow: hidden;
-    position: relattive;    
+    position: relative;    
     padding: 100px 0;
     background: linear-gradient(135deg, #101011 0%, #101011 75%);
+    isolaton: isolate;
 }
 .hero-section::before {
         content: '';
@@ -94,6 +95,7 @@ body {
         border-radius: 50%;
         background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)
         opacity: 0.1;
+        z-index: -1;
 }
 .hero-section::after {
             content: '';
@@ -105,7 +107,7 @@ body {
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-color) 0%, #ff9e9e 100%);
             opacity: 0.1;
-            z-index: 0;
+            z-index: -1;
         }
 
 .profile-img {
@@ -309,6 +311,8 @@ body {
 
 .about-section, .skills-section, .projects-section, .hire-section, .contact-section {
     padding: 100px 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .about-section {
@@ -337,6 +341,22 @@ body {
 }
 .icon-shake-container p {
     font-size: 1.2vw;
+}
+@media (max-width: 768px){
+        .hero-content h1 {
+                font-size: 2.5rem;
+        }
+        .section-title {
+                font-size:2rem;
+                
+        }
+        .about-section, .skills-section, .projects-section, .hire-section, .contact-section{
+                padding: 60px 0;
+        }
+        .hero-section::before,
+        .hero-section::after{
+                display:none;
+        }
 }
 .skills-section {
     /* background: linear-gradient(135deg, #f5f7ff 0%, #eef1ff 100%); */
