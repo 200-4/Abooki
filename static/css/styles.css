@@ -78,11 +78,11 @@ body {
 }
 
 .hero-section {
-
+    overflow: hidden;
+    position: relattive;    
     padding: 100px 0;
     background: linear-gradient(135deg, #101011 0%, #101011 75%);
 }
-
 
 .profile-img {
     width: 90%;
@@ -92,6 +92,7 @@ body {
 }
 .hero-content {
     position: relative;
+        z-index: 2;
 }
 
 .hero-content h1 {
