@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from .models import Project,Skill,Service
 from django.http import JsonResponse
+import requests
 
 
 # Create your views here.
@@ -39,39 +40,39 @@ def contact(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-    data = {
-            "Messages": [
-                {
-                    "From": {
-                        "Email": settings.MAILJET_SENDER,
-                        "Name": name
-                    },
-                    "To": [
-                        {
-                            "Email": settings.CONTACT_EMAIL,  # Your inbox
-                            "Name": "Josh"
-                        }
-                    ],
-                    "Subject": subject,
-                    "TextPart": f"From: {name} ({email})\n\n{message}",
-                }
-            ]
-        }
-
-        response = requests.post(
-            "https://api.mailjet.com/v3.1/send",
-            auth=(settings.MAILJET_API_KEY, settings.MAILJET_API_SECRET),
-            json=data
-        )
-
-        if response.status_code == 200:
-            # Redirect back home with a success message in query params
-            return redirect("/?success=1")
-        else:
-            # Redirect home with error flag
-            return redirect("/?error=1")
-
-    # If GET request, just go home
-    return redirect("/")
-    
-     
+        data = {
+                "Messages": [
+                    {
+                        "From": {
+                            "Email": settings.MAILJET_SENDER,
+                            "Name": name
+                        },
+                        "To": [
+                            {
+                                "Email": settings.CONTACT_EMAIL,  # Your inbox
+                                "Name": "Josh"
+                            }
+                        ],
+                        "Subject": subject,
+                        "TextPart": f"From: {name} ({email})\n\n{message}",
+                    }
+                ]
+            }
+        
+            response = requests.post(
+                "https://api.mailjet.com/v3.1/send",
+                auth=(settings.MAILJET_API_KEY, settings.MAILJET_API_SECRET),
+                json=data
+            )
+        
+            if response.status_code == 200:
+                # Redirect back home with a success message in query params
+                return redirect("/?success=1")
+            else:
+                # Redirect home with error flag
+                return redirect("/?error=1")
+        
+        # If GET request, just go home
+        return redirect("/")
+        
+         
