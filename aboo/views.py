@@ -80,5 +80,5 @@ def contact(request):
             # return JsonResponse({"success": False, "error": response.text})
             return redirect("/?error=1")
        # If GET request, just go home
-      return redirect("/")
+return redirect("/")
 
