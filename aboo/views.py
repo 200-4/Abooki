@@ -74,8 +74,11 @@ def contact(request):
         )
 
         if response.status_code == 200:
-            return JsonResponse({"success": True, "message": "Message sent successfully"})
+            # return JsonResponse({"success": True, "message": "Message sent successfully"})
+            return redirect("/?success=1")
         else:
-            return JsonResponse({"success": False, "error": response.text})
-        return redirect("/")
+            # return JsonResponse({"success": False, "error": response.text})
+            return redirect("/?error=1")
+       # If GET request, just go home
+      return redirect("/")
 
