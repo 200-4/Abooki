@@ -39,16 +39,24 @@ def contact(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-        #save to database
-
-        # from .models import ContactMessage
-        # ContactMessage.objects.create(
-        #     name = name,
-        #     email=email,
-        #     subject=subject,
-        #     message=message
-        # )
-       data = {"Messages": [{"From": {"Email": settings.MAILJET_SENDER,"Name": name},"To": [{"Email": settings.CONTACT_EMAIL,"Name": "Josh"}],"Subject": subject,"TextPart": f"From: {name} ({email})\n\n{message}",}]}
+    data = {
+            "Messages": [
+                {
+                    "From": {
+                        "Email": settings.MAILJET_SENDER,
+                        "Name": name
+                    },
+                    "To": [
+                        {
+                            "Email": settings.CONTACT_EMAIL,  # Your inbox
+                            "Name": "Josh"
+                        }
+                    ],
+                    "Subject": subject,
+                    "TextPart": f"From: {name} ({email})\n\n{message}",
+                }
+            ]
+        }
 
         response = requests.post(
             "https://api.mailjet.com/v3.1/send",
@@ -57,11 +65,13 @@ def contact(request):
         )
 
         if response.status_code == 200:
-            # return JsonResponse({"success": True, "message": "Message sent successfully"})
+            # Redirect back home with a success message in query params
             return redirect("/?success=1")
         else:
-            # return JsonResponse({"success": False, "error": response.text})
+            # Redirect home with error flag
             return redirect("/?error=1")
-       # If GET request, just go home
-return redirect("/")
 
+    # If GET request, just go home
+    return redirect("/")
+    
+     
