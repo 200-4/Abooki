@@ -57,7 +57,7 @@ def contact(request):
                     },
                     "To": [
                         {
-                            "Email": settings.MAILJET_SENDER,  # Your inbox
+                            "Email": settings.CONTACT_EMAIL,  # Your inbox
                             "Name": "Josh"
                         }
                     ],
