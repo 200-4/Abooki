@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from .models import Project,Skill,Service
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -40,24 +41,40 @@ def contact(request):
 
         #save to database
 
-        from .models import ContactMessage
-        ContactMessage.objects.create(
-            name = name,
-            email=email,
-            subject=subject,
-            message=message
+        # from .models import ContactMessage
+        # ContactMessage.objects.create(
+        #     name = name,
+        #     email=email,
+        #     subject=subject,
+        #     message=message
+        # )
+       data = {
+            "Messages": [
+                {
+                    "From": {
+                        "Email": settings.MAILJET_SENDER,
+                        "Name": name
+                    },
+                    "To": [
+                        {
+                            "Email": settings.MAILJET_SENDER,  # Your inbox
+                            "Name": "Josh"
+                        }
+                    ],
+                    "Subject": subject,
+                    "TextPart": f"From: {name} ({email})\n\n{message}",
+                }
+            ]
+        }
+
+        response = requests.post(
+            "https://api.mailjet.com/v3.1/send",
+            auth=(settings.MAILJET_API_KEY, settings.MAILJET_API_SECRET),
+            json=data
         )
 
-        #Send email notification
-        send_mail(
-            f'Portfolio Contact: {subject}',
-            f'From: {name} ({email})\n\n{messages}',
-            settings.DEFAULT_FROM_EMAIL,
-            [settings.CONTACT_EMAIL],
-            fail_silently=False, 
-        )
-
-        messages.success(request, 'Your message has been sent successfully')
-        return redirect('home')
-    return render(request, 'aboo/contact.html')
+        if response.status_code == 200:
+            return JsonResponse({"success": True, "message": "Message sent successfully"})
+        else:
+            return JsonResponse({"success": False, "error": response.text})
 
