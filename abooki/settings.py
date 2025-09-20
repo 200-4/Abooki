@@ -26,6 +26,7 @@ SECRET_KEY = "django-insecure-u6!nv3xht%9md)=@i#t6285=jo)*=u1yc!3xk-krr9#ggor329
 MAILJET_API_KEY = "b6b63df7e842fc785c371ca1af0abd48"
 MAILJET_API_SECRET = "9b69d4402e3ca258413426e263a25d07"
 MAILJET_SENDER = "kunihirajoshua270@gmail.com"
+CONTACT_EMAIL = "kunihirajoshua270@gmail.com"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
