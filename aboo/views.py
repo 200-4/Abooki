@@ -77,4 +77,5 @@ def contact(request):
             return JsonResponse({"success": True, "message": "Message sent successfully"})
         else:
             return JsonResponse({"success": False, "error": response.text})
+        return redirect("/")
 
