@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
-from .models import Project,Skill,Service
+from .models import Project, Skill, Service
 from django.http import JsonResponse
-import requests
+import requests  # You need to import requests too!
 
 
 # Create your views here.
@@ -24,14 +24,14 @@ def home(request):
 def projects(request):
     all_projects = Project.objects.all().order_by('-completed_date')
     return render(request, 'aboo/projects.html', {'project': all_projects})
+
 def hire_me(request):
     services = Service.objects.all()
-    return render(request, 'aboo/hire.html', {'services':services})
+    return render(request, 'aboo/hire.html', {'services': services})
+
 def learn_more(request, service_id):
     service = get_object_or_404(Service, id=service_id)
     return render(request, 'aboo/learn_more.html', {'service': service})
-
-
 
 def contact(request):
     if request.method == 'POST':
@@ -40,39 +40,39 @@ def contact(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
+        # FIXED INDENTATION STARTS HERE
         data = {
-                "Messages": [
-                    {
-                        "From": {
-                            "Email": settings.MAILJET_SENDER,
-                            "Name": name
-                        },
-                        "To": [
-                            {
-                                "Email": settings.CONTACT_EMAIL,  # Your inbox
-                                "Name": "Josh"
-                            }
-                        ],
-                        "Subject": subject,
-                        "TextPart": f"From: {name} ({email})\n\n{message}",
-                    }
-                ]
-            }
-        
-            response = requests.post(
-                "https://api.mailjet.com/v3.1/send",
-                auth=(settings.MAILJET_API_KEY, settings.MAILJET_API_SECRET),
-                json=data
-            )
-        
-            if response.status_code == 200:
-                # Redirect back home with a success message in query params
-                return redirect("/?success=1")
-            else:
-                # Redirect home with error flag
-                return redirect("/?error=1")
-        
-        # If GET request, just go home
-        return redirect("/")
-        
+            "Messages": [
+                {
+                    "From": {
+                        "Email": settings.MAILJET_SENDER,
+                        "Name": name
+                    },
+                    "To": [
+                        {
+                            "Email": settings.CONTACT_EMAIL,  # Your inbox
+                            "Name": "Josh"
+                        }
+                    ],
+                    "Subject": subject,
+                    "TextPart": f"From: {name} ({email})\n\n{message}",
+                }
+            ]
+        }
+
+        response = requests.post(
+            "https://api.mailjet.com/v3.1/send",
+            auth=(settings.MAILJET_API_KEY, settings.MAILJET_API_SECRET),
+            json=data
+        )
+
+        if response.status_code == 200:
+            # Redirect back home with a success message in query params
+            return redirect("/?success=1")
+        else:
+            # Redirect home with error flag
+            return redirect("/?error=1")
+
+    # If GET request, just go home
+    return redirect("/")
          
