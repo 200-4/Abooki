@@ -48,24 +48,7 @@ def contact(request):
         #     subject=subject,
         #     message=message
         # )
-       data = {
-            "Messages": [
-                {
-                    "From": {
-                        "Email": settings.MAILJET_SENDER,
-                        "Name": name
-                    },
-                    "To": [
-                        {
-                            "Email": settings.CONTACT_EMAIL,  # Your inbox
-                            "Name": "Josh"
-                        }
-                    ],
-                    "Subject": subject,
-                    "TextPart": f"From: {name} ({email})\n\n{message}",
-                }
-            ]
-        }
+       data = {"Messages": [{"From": {"Email": settings.MAILJET_SENDER,"Name": name},"To": [{"Email": settings.CONTACT_EMAIL,"Name": "Josh"}],"Subject": subject,"TextPart": f"From: {name} ({email})\n\n{message}",}]}
 
         response = requests.post(
             "https://api.mailjet.com/v3.1/send",
