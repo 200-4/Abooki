@@ -124,10 +124,10 @@ I have Experience in graphics designing,enabling creation of visually appealing 
                 <div class="col-md-4 mb-4">
                     <div class="skill-card">
                         <div class="skill-icon">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="{{ skill.skill_icon }}"></i>
                         </div>
                         <h3>{{ skill.name }}</h3>
-                        <p>Expert in analyzing complex datasets, creating visualizations, and deriving actionable insights using tools like Python, R, Tableau, and Power BI.</p>
+                        <p>{{ skill.description }}</p>
                         <!-- <div class="progress mb-3">
                             will use the progress bar later
                           <div class="progress-bar" role="progressbar" style="width: {{ skill.proficiency }}%" aria-valuenow="{{ skill.proficiency }}" aria-valuemin="0" aria-valuemax="100">{{ skill.proficiency }}%</div>
