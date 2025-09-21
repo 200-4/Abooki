@@ -32,7 +32,7 @@ class Skill(models.Model):
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     description = models.TextField(blank=True,null=True)
-    skill_icon = modelS.CharField(max_length=50,default='fa fa-user')
+    skill_icon = models.CharField(max_length=50,default='fa fa-user')
     # proficiency = models.IntegerField(default=80)
     technology = models.ManyToManyField(Technology, related_name='skills', blank=True)
 
