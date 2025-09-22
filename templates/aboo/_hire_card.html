@@ -6,7 +6,7 @@
                 <i class="{{ service.icon_class }}"></i>
             </div>
             <h3>{{ service.title }}</h3>
-            <p>{{ service.description }}</p>
+            <p>{{ service.description|safe }}</p>
             <div class="price">{{ service.price }}</div>
             <a href="{% url 'home' %}#contact" class="btn btn-outline-primary">Request Quote</a>
             <div class="mb-3 learn-more">
